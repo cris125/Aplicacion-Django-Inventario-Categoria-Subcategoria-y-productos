@@ -1,0 +1,31 @@
+{% extends "./index.html"%} 
+{% block title %} Agregar Inventarios {% endblock %}
+<head>
+   
+</head>
+<body>
+  {% block body %}
+    <div class="nuevoP">
+    <h1>Edicion Producto</h1>
+    <form  method="post" action="/ProductosPutGuardar/{{producto.id}}/ "  enctype="multipart/form-data"  >{% csrf_token %}
+       
+        <input type="text" id="nombre" class="Btname" name="nombre" value={{producto.nombre}} required>
+          <input type="text" id="descripción" class="Btname" name="descripción"  value={{producto.descripción}} required>
+          
+          <input type="number" id="precio" class="Btname" name="precio"  value={{producto.precio}} required>
+          <select id="subcategoria" class="Btname" name="subcategoria" placeholder="nombre subcategoria" required>
+            {% for x in subcategoria %}
+                <option type="number" value="{{x.id}}">{{x.nombre}}</option>
+            {% endfor %}
+          </select>
+
+          <input type="number" id="cantidad" class="Btname" name="cantidad"   value={{producto.cantidad}} required>
+          
+          <input type="file" id="foto" class="Btname" name="foto" accept="image/*" required>
+          <button type="submit">Guardar</button>
+        
+      </form>
+    </div>
+    {% endblock %}
+   
+</body>

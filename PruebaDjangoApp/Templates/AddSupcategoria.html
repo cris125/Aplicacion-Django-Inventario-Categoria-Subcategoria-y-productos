@@ -1,0 +1,58 @@
+
+{% extends "./index.html"%} 
+{% block title %} Agregar Inventarios {% endblock %}
+{% block body %}
+<head>
+ 
+</head>
+<body>
+  
+  
+ 
+  <div class="ArticuleForm">
+  <button id="Abrir">Agregar Categoria</button>
+  <div class="tabla">
+    <h1>Lista categoria</h1>
+    <table class="table" >
+        <tr>
+          <td class="tit">id</td>
+          <td class="tit">Nombre</td>
+          <td class="tit">descripcion</td>
+          <td class="tit">nombreCategoria</td>
+        </tr>
+        {% for x in subcategoria %}
+        <tr>
+            <td>{{ x.id }}</td>
+            <td>{{ x.nombre}}</td>
+            <td>{{ x.descripcion }}</td>
+           
+        <td class="EdEltb"><a class="EdEl" href="/SubcategoriaiaPut/{{x.id}}/" >Editar</a></td>
+        <td class="EdEltb"><a  class="EdEl" href="/SubcategoriaDelete/{{x.id}}/" > Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+    
+  <dialog id="VentanaDes">
+    <form  method="post" action="/Subcategoria/"  >{% csrf_token %}
+      <input type="text" id="nombre" name="nombre" class="Btname" placeholder="nombre" required>
+      <input type="text" id="descripcion" name="descripcion" class="Btname" placeholder="descripcion" required>
+      
+      
+      <button type="submit">Guardar</button>
+
+    </form>
+    <button id="Cerrar">Cerrar</button>
+  </dialog>
+  <script>
+      const botonAbrir=document.querySelector("#Abrir")
+      const botonCerrar=document.querySelector("#Cerrar")
+      const ventana=document.querySelector("#VentanaDes")
+      botonAbrir.addEventListener("click",()=>{ventana.showModal();})
+      botonCerrar.addEventListener("click",()=>{ventana.close();})
+  </script>
+    {% endblock %}
+ 
+</div>  
+</body>
